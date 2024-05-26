@@ -1,0 +1,22 @@
+body {
+    margin: 0px;
+    font-family: sans-serif;
+    min-width: 490px;
+}
+
+/* HEADER */
+.main_name{grid-area: app_name; 
+    color: white;
+    padding-left: 15px;
+}
+.main_header {
+    background-color: rgb(54, 124, 253);
+    display: grid;
+    align-items: center;
+    grid-template-areas: 
+    'app_name';
+}
+
+.main_body {
+    margin-inline: 10px;
+}

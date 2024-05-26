@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout_signin.css') }}">
+    <title>Sign in</title>
+</head>
+<body>
+
+    <div class="main_head_body">
+        <div class="main_header">
+            <h1 class="main_name">Sign in</h1>
+        </div>
+    </div>
+    
+    <div class="body_div">
+        <div class="input_div">
+            <form action="/signin" method="post">
+                <h3>Please make sure to fill all fields. Thank you</h3>
+                {% if dnp %}
+                    <div class="dnp_div" id="id_dnp_div">
+                        <p>User not available. Please try again... <button type="button" onclick="closer()" class="close">X</button></p>
+                    </div>
+                {% endif %}
+                <input type="text" name="user" placeholder="Username" required>
+                <br><br>
+                <input type="text" name="user_name" placeholder="Full Name" required>
+                
+                <input type="date" name="user_date" value="yyyy-mm-dd" 
+                    class="input-medium search-query" required>
+                <br><br>
+                <input type="text" name="user_room" placeholder="Room" required>
+                <br><br>
+                <input name="password" placeholder="Password" id="password" type="password" onkeyup='check();' required/>
+                <br><br>
+                <input type="password" placeholder="Confirm password"  name="confirm_password" id="confirm_password" onkeyup='check();' required/>
+                <span id='message'></span>
+                <br><br>
+                <button type="submit" id="id_submit" disabled>Sign in</button>
+            </form>
+        </div>
+
+        <br>
+
+        <a href="{{ url_for('index') }}">Back to Home</a>
+
+    </div>
+
+</body>
+<script>
+    function closer() {
+        document.getElementById('id_dnp_div').style.display = "none";
+    }
+
+    var check = function() {
+        if (document.getElementById('password').value ==
+            document.getElementById('confirm_password').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'Matching';
+            document.getElementById('id_submit').disabled = false;
+        } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Not matching';
+            document.getElementById('id_submit').disabled = true;
+            }
+        }
+  </script>
+
+</html>

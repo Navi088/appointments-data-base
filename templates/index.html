@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PERSONAL CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout_index.css') }}">
+    <title>My Flask Web</title>
+</head>
+<body>
+    <div class="main_container">
+        <div class="login_container">
+            <form action="/" method="post">
+
+                <h1>Login</h1>
+                
+                <input type="text" name="myUser" placeholder="Username"><br>
+                <br>
+                <input type="password" name="myPass" placeholder="Password"><br>
+                <br>
+                <button type="submit" class="login_button">Login</button>
+                <br>
+                <p>Don't you have an account?</p>
+                <a href="{{ url_for('sign_in') }}" class="signin_button">Sign in</a> 
+                <br>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <br/><br/>
+                        {% for message in messages %}
+                            <div class="alert" id="my_alert">
+                                <p class="popup_msg" id="pop_msg">{{ message }}</p>
+                                <button type="button" class="btn_close" id="pop_btn">X</button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+            </form>
+        </div>
+        <script>
+            document.getElementById('pop_btn').onclick = function () {
+                document.getElementById('my_alert').style.display = "none";
+            }
+        </script>
+    </div>
+
+</body>
+</html>

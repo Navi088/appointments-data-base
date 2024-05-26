@@ -1,0 +1,43 @@
+body {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+a {
+    color: black;
+    font-size: 20px;
+}
+
+/* HEADER */
+.main_name{grid-area: app_name; 
+    color: white;
+    padding-left: 15px;
+}
+.main_header {
+    background-color: rgb(54, 124, 253);
+    display: grid;
+    align-items: center;
+    grid-template-areas: 
+    'app_name';
+}
+
+
+.input_div {
+    grid-area: inputs;
+}
+.dnp_div {
+    width: 270px;
+    background-color: rgb(246, 118, 118);
+    border-color: red;
+    color: black;
+}
+.close {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+}
+
+.body_div {
+    margin: 15px;
+    border-radius: 10px;
+}

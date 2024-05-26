@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout_end.css') }}">
+    <title>Successfull Operation</title>
+</head>
+<body>
+
+    <div class="main_head_body">
+        <div class="main_header">
+            <h1 class="main_name">Main Web Page Name</h1>
+        </div>
+    </div>
+
+    <div class="main_body">
+        <h1>Appointment successfully {{ cs }}!!</h1>
+
+        <a href="{{ url_for('profile') }}">Back to Profile</a>
+    </div>
+    
+</body>
+</html>

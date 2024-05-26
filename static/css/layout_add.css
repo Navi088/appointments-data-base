@@ -1,0 +1,131 @@
+body {
+    margin: 0px;
+    font-family: sans-serif;
+    background-image: url(/static/css/imgs/add_wallpaper.png);
+    background-size: cover;
+    min-width: 490px;
+}
+
+/* HEADER */
+.main_name{grid-area: app_name; 
+    color: white;
+    padding-left: 15px;
+}
+.menu_selec{grid-area: main_menu;
+    text-align: right;
+    color: white;
+}
+a {
+    text-decoration: none;
+    color: white;
+    padding-right: 20px;
+}
+.main_header {
+    background-color: rgb(54, 124, 253);
+    display: grid;
+    align-items: center;
+    grid-template-areas: 
+    'app_name app_name main_menu';
+}
+
+
+
+/* HOURS */
+.hours_title {
+    text-align: center;
+}
+.hours_div {
+    width: 250px;
+}
+.radio_lbl {
+    margin-right: 28px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    /* width: 250px; */
+    width: 100%;
+    height: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #497df85c;
+}
+
+
+.pt_info {
+    grid-area: pt_info;
+    display: flex;
+    justify-content: left;
+}
+.pt_info .pt_data{
+    text-align: left;
+    width: 250px;
+    margin-inline: 10px;
+}
+.main_pt_picture{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main_pt_picture .profile_picture{
+    width: 150px;
+    height: 150px;
+}
+.select_date {grid-area: date; 
+    /* margin-right: auto; 
+    margin-left: auto; */
+    margin-left: 15px;
+}
+.table_div {grid-area: table_div;}
+
+.main_body_div {
+    margin-inline: 10px;
+    display: grid;
+    grid-template-areas: 
+    'pt_info pt_info'
+    'date table_div';
+}
+
+@media(max-width: 835px) {
+    body {
+        background-image: none;
+    }
+}
+
+@media(max-width: 660px) {
+    .pt_info {
+        grid-area: info;
+    }
+    .select_date {
+        grid-area: sel_date;
+        width: 100%;
+    }
+    .table_div {
+        grid-area: first_table;
+        width: auto;
+    }
+
+    .main_body_div{
+        display: grid;
+        grid-template-areas: 
+        'info'
+        'sel_date'
+        'first_table';
+        gap: 10px;
+    }
+
+    .main_name {
+        display: none;
+    }
+    .main_header {
+        height: 35px;
+    }
+}

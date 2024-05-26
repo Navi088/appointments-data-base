@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout_signed.css') }}">
+    <title>Result</title>
+</head>
+<body>
+    <div class="main_head_body">
+        <div class="main_header">
+            <h1 class="main_name">Signed in</h1>
+        </div>
+    </div>
+
+    <div class="main_body">
+        <h1>Account successfully created! Please go to log in. Thank you!</h1>
+
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>

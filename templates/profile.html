@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout_profile.css') }}">
+    <title>Patient Profile</title>
+</head>
+<body>
+    
+    <div class="main_head_body">
+        <div class="main_header">
+            <h1 class="main_name">Main Web Page Name</h1>
+            <div class="menu_selec">
+                <a href="{{ url_for('add_patient') }}">Make Appt</a>
+                <!-- <a href="#">Cancel Appt</a> -->
+                <a href="{{ url_for('logout') }}">Log out</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="body_container">
+        <div class="pt_info">
+            <div class="img"></div>
+        </div>
+        
+        <h1 class="welcome">Welcome to your profile, {{ current_user.name }}!</h1>
+
+        <br>
+
+        <div class="table_info">
+            {% if data %}
+                <h4>NOTE: You can cancel an appointment clicking over the row</h4>
+                <h3>History</h3>
+                <table>
+                    <tr>
+                        <td>Reason</td>
+                        <td>Date</td>
+                        <td>Hour</td>
+                        <td>Room</td>
+                        <td>Status</td>
+                    </tr>
+                        {% for x in data %}
+                            <tr onclick="cancelAppointment(this)">
+                                {% for y in x %}
+                                        <td>{{ y }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                </table>
+            {% else %}
+                <div  class="no_appt">
+                    <h2>You do not have any appointment yet.</h2>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div>
+        <form action="/profile" method="post" id="myForm">
+            <input id="dates" name="myDates" type="text" hidden>
+            <input id="hours" name="myHour" type="text" hidden>
+            <input id="cancelation" name="myCondition" type="text" hidden>
+        </form>
+    </div>
+
+    <script>
+        function cancelAppointment(x) {
+            var popup = confirm("Do you want to cancel this appointment?")
+
+            if (popup == true){
+                var row = x.rowIndex;
+                var tableTr = document.getElementsByTagName('tr');
+
+                var getDate = tableTr[row].cells[1].textContent
+                var getHour = tableTr[row].cells[2].textContent
+
+                var dates = document.getElementById('dates').value = getDate;
+                var hours = document.getElementById('hours').value = getHour;
+                var hours = document.getElementById('cancelation').value = "Cancelation";
+
+                document.getElementById('myForm').submit()
+            }
+        }
+    </script>
+
+</body>
+</html>

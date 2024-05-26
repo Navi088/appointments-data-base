@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout_add.css') }}">
+    <title>Make Appointment</title>
+</head>
+
+<body>
+
+    <div class="main_head_body">
+        <div class="main_header">
+            <h1 class="main_name">Main Web Page Name</h1>
+            <div class="menu_selec">
+                <a href="{{ url_for('profile') }}">Profile</a>
+                <a href="{{ url_for('logout') }}">Log out</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main_body_div">
+        
+        <div class="pt_info">
+            <div class="main_pt_picture">
+                <img class="profile_picture" src="/static/css/imgs/profiles.png" alt="">
+            </div>
+            <div class="pt_data">
+                <h1>Patient Info</h1>
+                <p>Name: {{ current_user.name }}</p>
+                <p>Birthday: {{ current_user.dob }}</p>
+                <p>Room: {{ current_user.room }}</p>
+            </div>
+        </div>
+
+        <div class="select_date">
+            <form action="/add" method="post">
+                <h4>Select Date</h4>
+                {% if show_date %}
+                    <input type="date" name="pt_date" id="pt_date" value="{{ date }}" 
+                        class="input-medium search-query" min="{{ cd }}" disabled>
+                    <h4>Reason</h4>
+                    <input type="text" name="reason" id="id_reason" value="{{ rsn }}" disabled><br><br>
+                    <button type="submit" id="check_btn" disabled>Check date</button>
+                {% else %}
+                    <input type="date" name="pt_date" value="yyyy-mm-dd" 
+                        class="input-medium search-query" min="{{ cd }}">
+                    <h4>Reason</h4>
+                    <input type="text" name="reason" id="id_reason"><br><br>
+                    <button id="sbm_btn" type="submit">Check date</button>
+                {% endif %}
+            </form>
+        </div>
+        
+        
+        <div class="table_div">
+            <form action="/sent" method="post" id="id_sent">
+                <table>
+                    <tr>
+                        <td>
+                            <h4 class="hours_title">Hours Available</h4>
+                        </td>
+                    </tr>
+                    {% if display == True %}
+                        <div class="hours_div">
+                            {% if qty > 0 %}
+                                {% for x in hr %}
+                                    <tr>
+                                        <td>
+                                            <input type="radio" value="{{ x }}" name="one" id="one" 
+                                            onclick="active_send()"><label class="radio_lbl" id="radio_hour">{{ x }}</label>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <p>There is no hours available...</p>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <tr>
+                            <td>
+                                <p>Please select a date</p>
+                            </td>
+                        </tr>
+                    {% endif %}
+                    <tr>
+                        <td>
+                            <button type="button" id="send_btn" onclick="send_request()" disabled>Send</button>
+                            <button type="button" id="cancel_btn" onclick="clear_date()" disabled>Cancel</button>
+                        </td>
+                    </tr>
+                </table>
+                <input type="text" value="{{ date }}" name="new_date" id="id_new_date" hidden>
+                <input type="text" value="{{ rsn }}" name="new_reason" id="id_new_reason" hidden>
+            </form>
+        </div>
+
+        <script>
+            // FUNCTION 1
+            function clear_date() {
+                document.getElementById('pt_date').disabled = false;
+                document.getElementById('check_btn').disabled = false;
+                document.getElementById('id_reason').disabled = false;
+                document.getElementById('id_reason').value = "";
+                
+                const elem = document.getElementsByName('one');
+                for(var i=0; i<elem.length;i++){
+                    elem[i].checked = false;
+                }
+
+                document.getElementById('send_btn').disabled = true;
+                document.getElementById('cancel_btn').disabled = true;
+            }
+
+            // FUNCTION 2
+            function active_send() {
+                document.getElementById('send_btn').disabled = false;
+                document.getElementById('cancel_btn').disabled = false;
+            }
+
+
+            // FUNCTION 3
+            function send_request() {
+                document.getElementById('id_new_date').value;
+                document.getElementById('id_new_reason').value;
+
+                document.getElementsByName('one').value;
+
+                document.getElementById('id_sent').submit();
+            }
+        </script>
+        
+
+    </div>
+    
+
+</body>
+</html>
